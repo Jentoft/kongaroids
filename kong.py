@@ -4,6 +4,7 @@ from pyglet.window import key
 class Kong:
 
 	SPEED = 200
+	FRICTION = .001
 
 	def __init__(self, window, key_states, image):
 		self.window = window
@@ -20,8 +21,8 @@ class Kong:
 		self.kong_sprite.x += self.dx * dt
 		self.kong_sprite.y += self.dy * dt
 
-		self.dx *= 0.99
-		self.dy *= 0.99
+		self.dx *= (1 - self.FRICTION)
+		self.dy *= (1 - self.FRICTION)
 
 		if self.key_states[key.UP]:
 			self.dy += self.SPEED*dt
@@ -38,14 +39,14 @@ class Kong:
 		max_x = self.window.width - self.kong_sprite.width
 
 		if self.kong_sprite.y < min_y:
-			self.kong_sprite.y = min_y
 			self.dy *= -1
+			self.kong_sprite.y *=-1
 		if self.kong_sprite.y > max_y:
-			self.kong_sprite.y = max_y
+			self.kong_sprite.y = 2 * max_y - self.kong_sprite.y
 			self.dy *= -1
 		if self.kong_sprite.x < min_x:
-			self.kong_sprite.x = min_x
+			self.kong_sprite.x *= -1
 			self.dx *= -1
 		if self.kong_sprite.x > max_x:
-			self.kong_sprite.x = max_x
+			self.kong_sprite.x = 2*max_x - self.kong_sprite.x
 			self.dx *= -1
