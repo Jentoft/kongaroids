@@ -10,13 +10,13 @@ class Kong:
 		self.key_states = key_states
 		self.kong_sprite = pyglet.sprite.Sprite(image, x = (self.window.width/2 -50), y = (self.window.height/2 - 50))
 		self.kong_sprite.scale = 100/self.kong_sprite.width
-		self.dx = 100
-		self.dy = 100
+		self.dx = 150
+		self.dy = 150
 
 	def draw(self):
 		self.kong_sprite.draw()
 
-	def update(self, dt):
+	def update(self, dt, a_position, b_position):
 		self.kong_sprite.x += self.dx * dt
 		self.kong_sprite.y += self.dy * dt
 

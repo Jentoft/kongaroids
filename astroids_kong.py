@@ -4,7 +4,7 @@ from pyglet.window import key
 class Kong:
 
 	SPEED = 200
-	FRICTION = .001
+	FRICTION = .01
 
 	def __init__(self, window, key_states, image):
 		self.window = window
