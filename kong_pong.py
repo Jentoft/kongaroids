@@ -16,26 +16,24 @@ paddleB = Paddle(window, key_states, paddle_image, 'B')
 
 def a_collision_detected():
 	if (kong.kong_sprite.x <= paddleA.image.width) and ((paddleA.paddle_sprite.y <= (kong.kong_sprite.y + kong.kong_sprite.height)) and ((paddleA.paddle_sprite.y + paddleA.image.height) >= kong.kong_sprite.y)):
-		print("collided with paddle A")
 		return True
 	return False
 
 def b_collision_detected():
 		if ((kong.kong_sprite.x + kong.kong_sprite.width) >= (window.width - paddleB.image.width)) and ((paddleB.paddle_sprite.y <= (kong.kong_sprite.y + kong.kong_sprite.height)) and ((paddleB.paddle_sprite.y + paddleB.image.height) >= kong.kong_sprite.y)):
-			print("collided with paddle B")
 			return True
 		return False
 
 
-def detect_collisions(objects):
+def handle_collisions():
 	if a_collision_detected():
-		return [objects[0], objects[2]]
+		kong.dx *= -1
+		kong.kong_sprite.x = 2 * paddleA.image.width - kong.kong_sprite.x
 	elif b_collision_detected():
-		return [objects[1], objects[2]]
+		kong.dx *= -1
+		kong.kong_sprite.x = 2 * paddleB.paddle_sprite.x - kong.kong_sprite.width - kong.kong_sprite.x
 	else:
 		return []
-
-
 
 @window.event
 def on_draw():
@@ -48,7 +46,7 @@ def update(dt):
 	a_position = paddleA.update()
 	b_position = paddleB.update()
 	kong.update(dt, a_position, b_position)
-	detect_collisions([paddleA, paddleB, kong])
+	handle_collisions()
 
 pyglet.clock.schedule_interval(update, 1/120)
 pyglet.app.run()
