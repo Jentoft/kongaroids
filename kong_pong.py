@@ -15,16 +15,23 @@ paddleA = Paddle(window, key_states, paddle_image, 'A')
 paddleB = Paddle(window, key_states, paddle_image, 'B')
 
 def a_collision_detected():
-	pass
+	if (kong.kong_sprite.x <= paddleA.image.width) and ((paddleA.paddle_sprite.y <= (kong.kong_sprite.y + kong.kong_sprite.height)) and ((paddleA.paddle_sprite.y + paddleA.image.height) >= kong.kong_sprite.y)):
+		print("collided with paddle A")
+		return True
+	return False
 
 def b_collision_detected():
-	pass
+		if ((kong.kong_sprite.x + kong.kong_sprite.width) >= (window.width - paddleB.image.width)) and ((paddleB.paddle_sprite.y <= (kong.kong_sprite.y + kong.kong_sprite.height)) and ((paddleB.paddle_sprite.y + paddleB.image.height) >= kong.kong_sprite.y)):
+			print("collided with paddle B")
+			return True
+		return False
+
 
 def detect_collisions(objects):
 	if a_collision_detected():
-		return [objects[1], objects[3]]
+		return [objects[0], objects[2]]
 	elif b_collision_detected():
-		return [objects[2], objects[3]]
+		return [objects[1], objects[2]]
 	else:
 		return []
 
