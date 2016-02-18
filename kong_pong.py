@@ -21,10 +21,7 @@ def a_collision_detected():
 	return (kong.kong_sprite.x <= paddleA.image.width) and ((paddleA.paddle_sprite.y <= (kong.kong_sprite.y + kong.kong_sprite.height)) and ((paddleA.paddle_sprite.y + paddleA.image.height) >= kong.kong_sprite.y))
 
 def b_collision_detected():
-	if ((kong.kong_sprite.x + kong.kong_sprite.width) >= (paddleB.paddle_sprite.x)) and ((paddleB.paddle_sprite.y <= (kong.kong_sprite.y + kong.kong_sprite.height)) and ((paddleB.paddle_sprite.y + paddleB.image.height) >= kong.kong_sprite.y)):
-		print("Paddle collision")
-		return True
-	return False
+	return ((kong.kong_sprite.x + kong.kong_sprite.width) >= (paddleB.paddle_sprite.x)) and ((paddleB.paddle_sprite.y <= (kong.kong_sprite.y + kong.kong_sprite.height)) and ((paddleB.paddle_sprite.y + paddleB.image.height) >= kong.kong_sprite.y))
 
 def wall_collision_detected():
 	return (kong.kong_sprite.x <= 0) or ((kong.kong_sprite.x + kong.kong_sprite.width) >= (window.width - 20))
@@ -37,13 +34,14 @@ def handle_collisions():
 		kong.kong_sprite.x = 2 * paddleA.image.width - kong.kong_sprite.x
 	elif b_collision_detected():
 		kong.dx *= -1
-		kong.kong_sprite.x = window.width - paddleB.image.width - (kong.kong_sprite.x + kong.kong_sprite.width - paddleB.paddle_sprite.x)
+		kong.kong_sprite.x = 2 * paddleB.paddle_sprite.x - 2*kong.kong_sprite.width - kong.kong_sprite.x
 	elif wall_collision_detected():
 		if kong.kong_sprite.x <= 0:
 			bScore += 1
 		else:
 			aScore += 1
 		print("A: {}     B: {}".format(aScore, bScore))
+		kong.reset()
 	else:
 		return []
 

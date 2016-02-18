@@ -13,6 +13,12 @@ class Kong:
 		self.dx = 150
 		self.dy = 150
 
+	def reset(self):
+		self.kong_sprite.x = self.window.width/2 - 50
+		self.kong_sprite.y = self.window.height/2 - 50
+		self.dx = 150
+		self.dy = 150
+
 	def draw(self):
 		self.kong_sprite.draw()
 
