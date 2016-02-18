@@ -23,7 +23,7 @@ class Kong:
 		min_y = 0
 		max_y = self.window.height - self.kong_sprite.height
 		min_x = 0
-		max_x = self.window.width - self.kong_sprite.width
+		max_x = self.window.width - self.kong_sprite.width - 20
 
 		if self.kong_sprite.y < min_y:
 			self.dy *= -1
@@ -31,9 +31,9 @@ class Kong:
 		if self.kong_sprite.y > max_y:
 			self.kong_sprite.y = 2 * max_y - self.kong_sprite.y
 			self.dy *= -1
-		if self.kong_sprite.x < min_x:
-			self.kong_sprite.x *= -1
-			self.dx *= -1
-		if self.kong_sprite.x > max_x:
-			self.kong_sprite.x = 2*max_x - self.kong_sprite.x
-			self.dx *= -1
+		# if self.kong_sprite.x < min_x:
+		# 	self.kong_sprite.x *= -1
+		# 	self.dx *= -1
+		# if self.kong_sprite.x > max_x:
+		# 	self.kong_sprite.x = 2*max_x - self.kong_sprite.x
+		# 	self.dx *= -1
