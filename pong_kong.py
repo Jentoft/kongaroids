@@ -3,7 +3,7 @@ from pyglet.window import key
 
 class Kong:
 
-	SPEED = 200
+	SPEED = 400
 
 	def __init__(self, window, key_states, image):
 		self.window = window
